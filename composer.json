@@ -1,0 +1,9 @@
+{
+    "name": "jan/restore",
+    "require": {
+        "sabre/xml": "^2.2"
+    },
+    "autoload": {
+        "classmap": ["lib"]
+    }
+}
