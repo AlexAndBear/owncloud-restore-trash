@@ -1,10 +1,24 @@
 <?php
 require __DIR__ . '/vendor/autoload.php';
 
-$uri = '<enter_user_server_uri>'; // e.g https://cloud.damken.com
-$username = '<enter_your_username>';
-$password = '<enter_your_password>';
-$restoreDate = '2020-12-08';
+use Symfony\Component\Console\Input\InputArgument;
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
+use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\SingleCommandApplication;
 
-$script = new RestoreTrash($uri, $username, $password, $restoreDate);
-$script->run();
+(new SingleCommandApplication())
+    ->addOption('url', false, InputOption::VALUE_REQUIRED)
+    ->addOption('username', 'u', InputOption::VALUE_REQUIRED)
+    ->addOption('password', 'p', InputOption::VALUE_REQUIRED)
+    ->addOption('date', 'd', InputOption::VALUE_REQUIRED)
+    ->setCode(function (InputInterface $input, OutputInterface $output) {
+       $uri = $input->getOption('url');
+       $username = $input->getOption('username');
+       $password = $input->getOption('password');
+       $date = $input->getOption('date');
+
+       $r = new RestoreTrash($uri, $username, $password, $date);
+       $r->run();
+    })
+    ->run();

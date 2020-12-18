@@ -1,7 +1,9 @@
 {
     "name": "jan/restore",
     "require": {
-        "sabre/xml": "^2.2"
+        "sabre/xml": "^2.2",
+      "ext-curl": "*",
+        "symfony/console": "^5.2"
     },
     "autoload": {
         "classmap": ["lib"]
